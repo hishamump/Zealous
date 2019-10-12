@@ -184,7 +184,6 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
@@ -195,13 +194,11 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EnumEventStatus.cs" />
     <Compile Include="Models\EventTracking.cs" />
-    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ProgressDetail.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\ZealousContext.cs" />
-    <Compile Include="Models\GetDataPaypal.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
@@ -338,13 +335,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Payment\index.cshtml" />
     <Content Include="Views\Equipment\Equip.cshtml" />
     <Content Include="Views\Equipment\AddEquipment.cshtml" />
     <Content Include="Views\Equipment\BookEquipment.cshtml" />
     <Content Include="Views\Equipment\DelEquipment.cshtml" />
     <Content Include="Views\Equipment\UpdEquipment.cshtml" />
-    <Content Include="Views\Payment\GetDataPaypal.cshtml" />
     <Content Include="Views\Event\index.cshtml" />
     <Content Include="Views\Event\Event.cshtml" />
     <Content Include="Views\Tracking\EventList.cshtml" />

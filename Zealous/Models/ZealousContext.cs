@@ -10,7 +10,6 @@ namespace Zealous.Models
     public class ZealousContext : DbContext
     {
 
-        public DbSet<Payment> Payments { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventTracking> EventTrackings { get; set; }
 
