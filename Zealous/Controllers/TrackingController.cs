@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Zealous.Controllers
 {
+    [Authorize]
     public class TrackingController : ZealousController
     {
         public ActionResult EventList()

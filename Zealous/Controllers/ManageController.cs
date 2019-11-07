@@ -4,7 +4,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Zealous.Models;
 
@@ -15,15 +17,74 @@ namespace Zealous.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
+
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            set
+            {
+                _roleManager = value;
+            }
+        }
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
+        }
+
+        public ActionResult Roles()
+        {
+            var roles = RoleManager.Roles
+                .Select(x => new RoleViewModel() { Id = x.Id, Name = x.Name }).ToList();
+            return View(roles);
+        }
+
+        public ActionResult CreateRole ()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRole(RoleViewModel model)
+        {
+            if (RoleManager.RoleExists(model.Name))
+            {
+                throw new Exception("Role already exist");
+            }
+            var newRole = new IdentityRole(model.Name);
+            var result = RoleManager.Create(newRole);
+            if (result.Succeeded)
+                return RedirectToAction("Roles");
+
+            return View(model);
+        }
+
+        public ActionResult AddRoleToUser() {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddRoleToUser(string user, string role) {
+            var _user = UserManager.FindByEmail(user);
+            var _role = RoleManager.FindByName(role);
+            var result = UserManager.AddToRole(_user.Id, role);
+            ViewBag.Errors = result.Errors;
+
+            if (result.Succeeded)
+                return RedirectToAction("Roles");
+
+            return View();
         }
 
         public ApplicationSignInManager SignInManager
@@ -35,6 +96,21 @@ namespace Zealous.Controllers
             private set 
             { 
                 _signInManager = value; 
+            }
+        }
+
+        public class ApplicationRoleManager : RoleManager<IdentityRole>
+        {
+            public ApplicationRoleManager(IRoleStore<IdentityRole, string> store)
+                :base(store)
+            {
+
+            }
+
+            public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+            {
+                var manager = new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+                return manager;
             }
         }
 

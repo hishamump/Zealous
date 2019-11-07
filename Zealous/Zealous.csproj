@@ -197,6 +197,7 @@
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ProgressDetail.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\ZealousContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -348,6 +349,9 @@
     <Content Include="Views\Supplier\addStatus.cshtml" />
     <Content Include="Views\Supplier\Status.cshtml" />
     <Content Include="Views\Supplier\updateStatus.cshtml" />
+    <Content Include="Views\Manage\Roles.cshtml" />
+    <Content Include="Views\Manage\CreateRole.cshtml" />
+    <Content Include="Views\Manage\AddRoleToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Zealous\" />
