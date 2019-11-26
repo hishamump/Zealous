@@ -243,10 +243,8 @@
     <Content Include="image\hb.jpg" />
     <Content Include="image\home-icon.png" />
     <Content Include="image\item-01.jpg" />
-    <Content Include="image\item-02.jpg" />
     <Content Include="image\item-03.jpg" />
     <Content Include="image\item-04.jpg" />
-    <Content Include="image\item-05.jpg" />
     <Content Include="image\item-06.jpg" />
     <Content Include="image\item-07.jpg" />
     <Content Include="image\item-08.jpg" />
@@ -258,16 +256,13 @@
     <Content Include="image\plan.png" />
     <Content Include="image\prev.png" />
     <Content Include="image\project-item-01.jpg" />
-    <Content Include="image\project-item-02.jpg" />
     <Content Include="image\project-item-03.jpg" />
     <Content Include="image\project-item-04.jpg" />
-    <Content Include="image\project-item-05.jpg" />
     <Content Include="image\project-item-06.jpg" />
     <Content Include="image\project-item-07.jpg" />
     <Content Include="image\project-item-08.jpg" />
     <Content Include="image\projects-icon.png" />
     <Content Include="image\prove-bg.png" />
-    <Content Include="image\right-about-image.jpg" />
     <Content Include="image\rsz_paypal-icon-copy-e1518630761134.jpg" />
     <Content Include="image\wed.jpg" />
     <Content Include="image\wedd.jpg" />
