@@ -16,19 +16,19 @@ namespace Zealous.Controllers
         {
             return View();
         }
-        public ActionResult BookEquipment(Book e)
+        public ActionResult BookEquipment()
         {
             return View();
         }
-        public ActionResult AddEquipment(Add e)
+        public ActionResult AddEquipment()
         {
             return View();
         }
-        public ActionResult DelEquipment(Del e)
+        public ActionResult DelEquipment()
         {
             return View();
         }
-        public ActionResult UpdEquipment(Upd e)
+        public ActionResult UpdEquipment()
         {
             return View();
         }

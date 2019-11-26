@@ -16,11 +16,11 @@ namespace Zealous.Controllers
         {
             return View();
         }
-        public ActionResult AddStatus(Add s)
+        public ActionResult AddStatus()
         {
             return View();
         }
-        public ActionResult UpdateStatus(Upd s)
+        public ActionResult UpdateStatus()
         {
             return View();
         }

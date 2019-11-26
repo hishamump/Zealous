@@ -1,28 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace Zealous.Models
 {
-    public class Add
+    public class Equipment
     {
-        public String name { set;get;}
-        public int item { set; get; }
-    }
-    public class Book
-    {
-        public String name { set; get; }
-        public String date { set; get; }
-        public int item { set; get; }
-    }
-    public class Del
-    {
-        public String name { set; get; }
-    }
-    public class Upd
-    {
-        public String name { set; get; }
-        public int item { set; get; }
+        [Key]
+        public int Id { get; set; }
+        public String EquipmentName { set;get;}
+        public String EquipmentDetail { set; get; }
     }
 }
