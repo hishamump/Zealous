@@ -70,6 +70,7 @@ namespace Zealous.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin") ]
         public ActionResult AddRoleToUser() {
             return View();
         }
@@ -96,21 +97,6 @@ namespace Zealous.Controllers
             private set 
             { 
                 _signInManager = value; 
-            }
-        }
-
-        public class ApplicationRoleManager : RoleManager<IdentityRole>
-        {
-            public ApplicationRoleManager(IRoleStore<IdentityRole, string> store)
-                :base(store)
-            {
-
-            }
-
-            public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
-            {
-                var manager = new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
-                return manager;
             }
         }
 

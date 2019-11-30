@@ -6,9 +6,12 @@
 }
 
 <h2>Assign Role To User</h2>
-@foreach (var item in errors)
+@if (errors != null)
 {
-    <li>@item</li>
+    foreach (var item in errors)
+    {
+        <li>@item</li>
+    }
 }
 <ul>
 
