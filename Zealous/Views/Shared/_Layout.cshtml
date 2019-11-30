@@ -25,7 +25,12 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Add To Cart", "index", "Event")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Event<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-item">@Html.ActionLink("Add To Cart", "index", "Event")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Equipment", "Equip", "Equipment")</li>
                     <li>@Html.ActionLink("Tracking", "EventList", "Tracking")</li>
                     <li>@Html.ActionLink("Supplier", "Status", "Supplier")</li>
