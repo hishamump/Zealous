@@ -180,6 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\EquipmentsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -263,6 +264,7 @@
     <Content Include="image\projects-icon.png" />
     <Content Include="image\prove-bg.png" />
     <Content Include="image\rsz_paypal-icon-copy-e1518630761134.jpg" />
+    <Content Include="image\stage.jpg" />
     <Content Include="image\wed.jpg" />
     <Content Include="image\wedd.jpg" />
     <Content Include="image\wedding.jpg" />
@@ -330,11 +332,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Equipment\Index.cshtml" />
-    <Content Include="Views\Equipment\AddEquipment.cshtml" />
-    <Content Include="Views\Equipment\BookEquipment.cshtml" />
-    <Content Include="Views\Equipment\DelEquipment.cshtml" />
-    <Content Include="Views\Equipment\UpdEquipment.cshtml" />
     <Content Include="Views\Events\Book.cshtml" />
     <Content Include="Views\Tracking\EventList.cshtml" />
     <Content Include="Views\Tracking\ProgressDetail.cshtml" />
@@ -350,6 +347,12 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Equipments\Create.cshtml" />
+    <Content Include="Views\Equipments\Delete.cshtml" />
+    <Content Include="Views\Equipments\Details.cshtml" />
+    <Content Include="Views\Equipments\Edit.cshtml" />
+    <Content Include="Views\Equipments\Index.cshtml" />
+    <Content Include="Views\Equipments\Book.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Zealous\" />

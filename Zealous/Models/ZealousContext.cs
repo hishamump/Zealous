@@ -24,5 +24,6 @@ namespace Zealous.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        public System.Data.Entity.DbSet<Zealous.Models.Equipment> Equipments { get; set; }
     }
 }
