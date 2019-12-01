@@ -180,7 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
-    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -290,7 +290,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Event\Track.cshtml" />
+    <Content Include="Views\Events\Track.cshtml" />
     <Content Include="Views\Report\index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -335,7 +335,7 @@
     <Content Include="Views\Equipment\BookEquipment.cshtml" />
     <Content Include="Views\Equipment\DelEquipment.cshtml" />
     <Content Include="Views\Equipment\UpdEquipment.cshtml" />
-    <Content Include="Views\Event\Book.cshtml" />
+    <Content Include="Views\Events\Book.cshtml" />
     <Content Include="Views\Tracking\EventList.cshtml" />
     <Content Include="Views\Tracking\ProgressDetail.cshtml" />
     <Content Include="Views\Tracking\UpdateEventProgress.cshtml" />
@@ -345,6 +345,11 @@
     <Content Include="Views\Manage\Roles.cshtml" />
     <Content Include="Views\Manage\CreateRole.cshtml" />
     <Content Include="Views\Manage\AddRoleToUser.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Zealous\" />
