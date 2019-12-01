@@ -48,19 +48,19 @@ namespace Zealous.Controllers
             var bookedIds = Session[SessionEquipCart] as List<int>;
             if (bookedIds != null)
             {
-                if (!bookedIds.Contains(eventId))
+                if (!bookedIds.Contains(equipId))
                 {
-                    bookedIds.Add(eventId);
+                    bookedIds.Add(equipId);
                 }
             }
             else
             {
-                bookedIds = new List<int>() { eventId };
+                bookedIds = new List<int>() { equipId };
                 Session[SessionEquipCart] = bookedIds;
             }
             var equips = db.Equipments.OrderBy(x => x.EquipmentName).ToList();
             FillBooking(equips, bookedIds);
-            ViewBag.EquipId = eventId;
+            ViewBag.EquipId = equipId;
             return View("Book", equips);
         }
 
