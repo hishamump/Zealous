@@ -22,9 +22,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Event<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -68,6 +65,10 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year -Zealous Corporation</p>
+            <p style="text-align:right; font-weight:bold">
+                @Html.ActionLink("About", "About", "Home") &nbsp;| &nbsp;
+                @Html.ActionLink("Contact", "Contact", "Home")
+            </p>
         </footer>
     </div>
 
