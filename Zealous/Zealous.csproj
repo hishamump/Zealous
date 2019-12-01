@@ -335,8 +335,7 @@
     <Content Include="Views\Equipment\BookEquipment.cshtml" />
     <Content Include="Views\Equipment\DelEquipment.cshtml" />
     <Content Include="Views\Equipment\UpdEquipment.cshtml" />
-    <Content Include="Views\Event\index.cshtml" />
-    <Content Include="Views\Event\Event.cshtml" />
+    <Content Include="Views\Event\Book.cshtml" />
     <Content Include="Views\Tracking\EventList.cshtml" />
     <Content Include="Views\Tracking\ProgressDetail.cshtml" />
     <Content Include="Views\Tracking\UpdateEventProgress.cshtml" />

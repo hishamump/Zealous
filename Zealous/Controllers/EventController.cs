@@ -18,33 +18,70 @@ namespace Zealous.Controllers
         public ActionResult Index()
         {
             var events = db.Events.OrderBy(x => x.EventName).ToList();
-            //product.Add(s);
+            return View(events);
+        }
 
+        [HttpGet]
+        public ActionResult Book()
+        {
+            var events = db.Events.OrderBy(x => x.EventName).ToList();
+            var bookedEventIds = Session["cart"] as List<int>;
+            FillBooking(events, bookedEventIds);
 
             return View(events);
         }
-       
-        [HttpPost]
-        public ActionResult Index(Event p)
+
+        private static void FillBooking(List<Event> events, List<int> bookedEventIds)
         {
-            if (ModelState.IsValid)
+            if (bookedEventIds != null)
             {
-                if (Session["cart"] != null)
+                foreach (var e in events)
                 {
-                    var ls = Session["cart"] as List<Event>;
-                    ls.Add(p);
+                    e.IsBooked = bookedEventIds.Contains(e.Id);
                 }
-                else
-                {
-                    Session["cart"] = new List<Event>() { p };
-                }
-              
-                RedirectToAction("Index", "Home"); // Anti F5 submit
             }
-            return View(); // model validate is false
         }
 
-     
+        private void FillBooked()
+        {
+
+        }
+
+        [HttpGet]
+        public ActionResult BookOne(int eventId)
+        {
+            var bookedEventIds = Session["cart"] as List<int>;
+            if (bookedEventIds != null)
+            {
+                if (!bookedEventIds.Contains(eventId))
+                {
+                    bookedEventIds.Add(eventId);
+                }
+            }
+            else
+            {
+                bookedEventIds = new List<int>() { eventId };
+                Session["cart"] = bookedEventIds;
+            }
+            var events = db.Events.OrderBy(x => x.EventName).ToList();
+            FillBooking(events, bookedEventIds);
+            ViewBag.EventId = eventId;
+            return View("Book", events);
+        }
+
+        [HttpGet]
+        public ActionResult RemoveBooking(int eventId)
+        {
+            var bookedEventIds = Session["cart"] as List<int>;
+            if (bookedEventIds != null)
+                bookedEventIds.Remove(eventId);
+
+            var events = db.Events.OrderBy(x => x.EventName).ToList();
+            FillBooking(events, bookedEventIds);
+            ViewBag.EventId = eventId;
+            return View("Book" ,events);
+        }
+
 
 
 
