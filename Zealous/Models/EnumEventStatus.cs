@@ -13,16 +13,6 @@ namespace Zealous.Models
         Wait
     }
 
-    public static class EnumHelper
-    {
-        public static List<ValueTextView> GetEventStatusView()
-        {
-            return ((IEnumerable<EventStatus>)Enum.GetValues(typeof(EventStatus)))
-                    .Select(c => new ValueTextView() { Value = (byte)c, Text = c.ToString() })
-                    .ToList();
-        }
-    }
-
     public class ValueTextView
     {
         public int Value { get; set; }

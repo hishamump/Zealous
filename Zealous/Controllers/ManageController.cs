@@ -13,7 +13,7 @@ using Zealous.Models;
 namespace Zealous.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : ZealousController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -40,6 +40,19 @@ namespace Zealous.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
             RoleManager = roleManager;
+        }
+
+        public ActionResult Approve()
+        {
+            var users = db.Users
+               .Where(u => u.Status != 0).ToList();
+            return View(users);
+        }
+
+        public ActionResult ApproveOne(string userId, byte status)
+        {
+            //TODO
+            return View();
         }
 
         public ActionResult Roles()

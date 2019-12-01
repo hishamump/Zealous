@@ -10,6 +10,7 @@ namespace Zealous.Models
     public class ZealousContext : DbContext
     {
 
+        public DbSet<AspNetUsers> Users { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventTracking> EventTrackings { get; set; }
 
