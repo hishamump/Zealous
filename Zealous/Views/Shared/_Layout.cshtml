@@ -28,13 +28,35 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Event<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-item">@Html.ActionLink("Add To Cart", "index", "Event")</li>
+                            <li class="dropdown-item">@Html.ActionLink("Event", "Index", "Event")</li>
+                            <li class="dropdown-item">@Html.ActionLink("Add", "Add", "Event")</li>
+                            <li class="dropdown-item">@Html.ActionLink("Book", "Book", "Event")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Equipment", "Equip", "Equipment")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Equipment<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-item">@Html.ActionLink("Equipment", "Index", "Equipment")</li>
+                            <li class="dropdown-item">@Html.ActionLink("Add Equipment", "Add", "Equipment")</li>
+                            <li class="dropdown-item">@Html.ActionLink("Book", "Book", "Event")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Tracking", "EventList", "Tracking")</li>
                     <li>@Html.ActionLink("Supplier", "Status", "Supplier")</li>
-                    <li>@Html.ActionLink("Role", "Roles", "Manage")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Equipment<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-item">@Html.ActionLink("Supplier", "Index", "Supplier")</li>
+                            <li class="dropdown-item">@Html.ActionLink("Add Equipment", "Add", "Equipment")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Role<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-item">@Html.ActionLink("Role", "Roles", "Manage")</li>
+                            <li class="dropdown-item">@Html.ActionLink("Add User", "AddRoleToUser", "Manage")</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
