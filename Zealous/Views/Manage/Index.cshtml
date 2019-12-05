@@ -27,7 +27,7 @@
         <dd>
             @if (!User.IsInRole("Supplier") && !User.IsInRole("Admin"))
             {
-                @Html.ActionLink("Activate Supplier Account", "ActivateSupplierRequest", null, new { @class = "btn btn-success" })
+                @Html.ActionLink("Request Supplier Account", "ActivateSupplierRequest", null, new { @class = "btn btn-success" })
             }
             else if (!User.IsInRole("Admin"))
             {

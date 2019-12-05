@@ -3,7 +3,7 @@
     ViewBag.Title = "EventList";
 }
 
-<h2>EventList</h2>
+<h2>Tracking Events List</h2>
 
 <div class="container">
     <table id="cart" class="table table-hover table-condensed">
@@ -29,7 +29,7 @@
             </td>
             <td data-th="EventName">@item.EventName</td>
 
-            <td data-th="Description">@item.ProductDes</td>
+            <td data-th="Description">@item.Description</td>
 
             <td class="actions" data-th="">
                 @Html.ActionLink("Update Progress", "UpdateEventProgress", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
