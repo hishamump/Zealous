@@ -192,12 +192,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\EnumEventStatus.cs" />
     <Compile Include="Models\EnumHelper.cs" />
     <Compile Include="Models\EnumUserStatus.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventTracking.cs" />
     <Compile Include="Models\Equipment.cs" />
-    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ProgressDetail.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -357,6 +358,7 @@
     <Content Include="Views\Equipments\Index.cshtml" />
     <Content Include="Views\Equipments\Book.cshtml" />
     <Content Include="Views\Manage\Approve.cshtml" />
+    <Content Include="Views\Events\ConfirmBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Zealous\" />

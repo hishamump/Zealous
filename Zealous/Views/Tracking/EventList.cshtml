@@ -1,4 +1,5 @@
-﻿@model List<Zealous.Models.Event>
+﻿@model List<Zealous.Models.Booking>
+@using Zealous.Models
 @{
     ViewBag.Title = "EventList";
 }
@@ -9,9 +10,8 @@
     <table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th style="width:10%">Id</th>
                 <th style="width:30%">Event</th>
-                <th style="width:60%">Description</th>
+                <th style="width:10%">Status</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -19,23 +19,13 @@
         @foreach (var item in Model)
         {
         <tr>
-            <td data-th="Id">
-                <div class="row">
-
-                    <div class="col-sm-10">
-                        <h4 class="nomargin">@item.Id</h4>
-                    </div>
-                </div>
-            </td>
-            <td data-th="EventName">@item.EventName</td>
-
-            <td data-th="Description">@item.Description</td>
-
+            <td>@item.EventName</td>
+            <td>@item.BookingStatus</td>
             <td class="actions" data-th="">
-                @Html.ActionLink("Update Progress", "UpdateEventProgress", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+                @Html.ActionLink("Update Progress", "UpdateEventProgress", "Tracking", new { id = item.EventId }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
             </td>
             <td class="actions" data-th="">
-                @Html.ActionLink("Track", "ProgressDetail", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+                @Html.ActionLink("Track", "ProgressDetail", "Tracking", new { id = item.EventId }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
             </td>
         </tr>
         }

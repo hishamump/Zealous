@@ -13,11 +13,11 @@
     <form id="firstForm" method="post" asp-action="UpdateEventProgress" asp-controller="Tracking">
         <table>
             <tr>
-                <td><h2>Current status for this: @Model.EventName event</h2></td>
+                <td><h4>Current status for: @Model.EventName event</h4></td>
                 <td></td>
             </tr>
             <tr>
-                <td>@Html.DropDownListFor(x => Model.EventStatus, new SelectList(data, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Country" })</td>
+                <td>@Html.DropDownListFor(x => Model.EventStatus, new SelectList(data, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "EventStatus" })</td>
                 <td><input type="submit" value="Update" /></td>
             </tr>
         </table>

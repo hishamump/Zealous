@@ -3,8 +3,15 @@
 
 @{
     var anchor = ViewBag.EventId;
+    var bookedEventIds = Session["cart"] as List<int>;
 }
 <div class="container">
+    @if (bookedEventIds != null && bookedEventIds.Count > 0)
+    {
+    <p style="text-align:center;margin-top:15px" >
+        <a class="btn btn-success" href="ConfirmBooking">Confirm Booking</a>
+    </p>
+    }
    <table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>

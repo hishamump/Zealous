@@ -13,10 +13,35 @@ namespace Zealous.Controllers
     {
         public ActionResult EventList()
         {
-            var events = db.Events.ToList();
+            var events = GetBookedEvents(null, null, null);
             return View(events);
         }
 
+        private List<Booking> GetBookedEvents(string userId, DateTime? startDate, DateTime? endDate)
+        {
+            var query = db.Bookings.Where(b => true);
+            if (startDate != null && endDate != null)
+                query = query.Where(b => b.BookingDate >= startDate.Value && b.BookingDate <= endDate.Value);
+            if (userId != null)
+                query = query.Where(b => b.UserId == userId);
+
+            return query.Join(db.Events, b => b.EventId, e => e.Id, (b, e) => new
+            {
+                b.BookingDate,
+                b.BookingStatus,
+                b.EquipmentId,
+                b.EventId,
+                b.UserId,
+                e.EventName
+            }).AsEnumerable().Select(b => new Booking {
+                BookingDate = b.BookingDate,
+                BookingStatus = b.BookingStatus,
+                EquipmentId = b.EquipmentId,
+                EventId = b.EventId,
+                UserId = b.UserId,
+                EventName = b.EventName
+            }).ToList();
+        }
         // Track one event progress
         public ActionResult ProgressDetail(int id)
         {

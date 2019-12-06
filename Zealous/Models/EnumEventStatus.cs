@@ -10,7 +10,8 @@ namespace Zealous.Models
         Create,
         Pending,
         Approved,
-        Wait
+        Wait,
+        InProgress
     }
 
     public class ValueTextView

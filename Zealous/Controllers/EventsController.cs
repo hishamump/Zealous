@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -20,6 +21,39 @@ namespace Zealous.Controllers
             return View(db.Events.ToList());
         }
 
+        [HttpGet]
+        public ActionResult ConfirmBooking()
+        {
+            var bookedEventIds = Session["cart"] as List<int>;
+            if (bookedEventIds != null)
+            {
+                foreach (var id in bookedEventIds)
+                {
+                    var booking = new Booking {
+                        EventId = id,
+                        UserId = User.Identity.GetUserId(),
+                        BookingStatus = EventStatus.Create.ToString()
+                    };
+
+                    db.Bookings.Add(booking);
+
+                    //TODO:Still need to get the EquipmentId out of Booking table into new table.
+                    //And in EventTracking save the BookingId instead of EventId
+
+                    var eventTrack = new EventTracking
+                    {
+                        EventId = id,
+                        CustomerId = User.Identity.GetUserId(),
+                        EventStatus = (byte)EventStatus.Create,
+                        Date = DateTime.Now
+                    };
+                    db.EventTrackings.Add(eventTrack);
+                }
+            }
+
+            db.SaveChanges();
+            return View();
+        }
 
         [HttpGet]
         public ActionResult Book()
