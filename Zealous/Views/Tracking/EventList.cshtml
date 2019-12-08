@@ -10,10 +10,10 @@
     <table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th style="width:30%">Event</th>
-                <th style="width:10%">Status</th>
-                <th></th>
-                <th></th>
+                <th>Event</th>
+                <th>Status</th>
+                <th style="width:10%"></th>
+                <th style="width:10%"></th>
             </tr>
         </thead>
         @foreach (var item in Model)
@@ -21,11 +21,11 @@
         <tr>
             <td>@item.EventName</td>
             <td>@item.BookingStatus</td>
-            <td class="actions" data-th="">
-                @Html.ActionLink("Update Progress", "UpdateEventProgress", "Tracking", new { id = item.EventId }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+            <td class="actions" data-th="" style="text-align:right">
+                @Html.ActionLink("Update Progress", "UpdateEventProgress", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
             </td>
-            <td class="actions" data-th="">
-                @Html.ActionLink("Track", "ProgressDetail", "Tracking", new { id = item.EventId }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+            <td class="actions" data-th="" style="text-align:right">
+                @Html.ActionLink("Track", "ProgressDetail", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
             </td>
         </tr>
         }

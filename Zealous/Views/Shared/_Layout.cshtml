@@ -6,7 +6,30 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+  <style>
+      .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 40%;
+          border-radius: 5px;
+      }
+
+          .card:hover {
+              box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          }
+
+      img {
+          border-radius: 5px 5px 0 0;
+      }
+
+      .container {
+          padding: 2px 16px;
+      }
+
+      body, html {
+          height: 100%;
+      }
+  </style>  
 
 </head>
 <body>
@@ -58,7 +81,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="height: 100%">
         <br />
         @RenderBody()
         <hr />

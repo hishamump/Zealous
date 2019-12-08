@@ -32,16 +32,19 @@ namespace Zealous.Controllers
                     var booking = new Booking {
                         EventId = id,
                         UserId = User.Identity.GetUserId(),
-                        BookingStatus = EventStatus.Create.ToString()
+                        BookingStatus = EventStatus.Create.ToString(),
+                        BookingDate = DateTime.Now
                     };
 
                     db.Bookings.Add(booking);
-
-                    //TODO:Still need to get the EquipmentId out of Booking table into new table.
-                    //And in EventTracking save the BookingId instead of EventId
+                    db.SaveChanges();
+                    //Keep EquipmentId into Booking table, we will not allow booking equipment without Event booked first.
+                    //The record of Event booking should be with EquipmentId = null,
+                    // then every equipment booking should have new record with EventId been set.
 
                     var eventTrack = new EventTracking
                     {
+                        BookingId = booking.Id,
                         EventId = id,
                         CustomerId = User.Identity.GetUserId(),
                         EventStatus = (byte)EventStatus.Create,
@@ -50,7 +53,6 @@ namespace Zealous.Controllers
                     db.EventTrackings.Add(eventTrack);
                 }
             }
-
             db.SaveChanges();
             return View();
         }

@@ -7,22 +7,36 @@
 }
 
 <h2>ProgressDetail</h2>
+@if (firstEvent != null)
+{
+    <h4>@firstEvent.EventName</h4>
 
-<h2>@firstEvent.EventName</h2>
-
-<div class="event-progress">
-    @for (int i = 0; i < Model.Count; i++)
-    {
-        var ev = Model[i];
-        var strFloat = "float:left";
-
-        <div style="width:200px;height:100px;border:1px solid #000;@strFloat;">
-            <h3>@((EventStatus)ev.EventStatus)</h3>
-            <span>@ev.Date</span>
-        </div>
-        if (i < Model.Count - 1)
+    <div class="event-progress" style="height:100%">
+        @for (int i = 0; i < Model.Count; i++)
         {
-            <h2 style="@strFloat">></h2>
+            var ev = Model[i];
+            var strFloat = "float:left";
+
+
+            <div class="card" style="margin-top:5px; max-width: 18rem;@strFloat">
+                
+                <div class="container">
+                    <h4><b>@((EventStatus)ev.EventStatus)</b></h4>
+                    <p>@ev.Date</p>
+                    <p class="card-text">@ev.Note</p>
+                </div>
+            </div>
+
+            if (i < Model.Count - 1)
+            {
+                <div class="card text-white bg-success mb-3" style="margin-top:5px;max-width: 5rem;@strFloat">
+                    <img src="~/image/progress.png" alt=">>" style="width:100%">
+                </div>
+            }
         }
-    }
-</div>
+    </div>
+    <hr />
+}else
+{
+    <h2>No Progress Available</h2>
+}

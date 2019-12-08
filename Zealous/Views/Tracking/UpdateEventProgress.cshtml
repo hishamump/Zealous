@@ -20,7 +20,17 @@
                 <td>@Html.DropDownListFor(x => Model.EventStatus, new SelectList(data, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "EventStatus" })</td>
                 <td><input type="submit" value="Update" /></td>
             </tr>
+            <tr>
+                <td colspan="2">
+                @if (ViewBag.Updated == true)
+                {
+                    <span style="color:green; font-weight:bold">Updated Successfully</span>
+                }
+                </td>
+            </tr>
         </table>
+        <input type="hidden" value="@Model.BookingId" name="BookingId" />
+        <input type="hidden" value="@Model.EventId" name="EventId" />
     </form>
 </div>
 

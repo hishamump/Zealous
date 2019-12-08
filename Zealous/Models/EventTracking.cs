@@ -8,6 +8,7 @@ namespace Zealous.Models
     public class EventTracking
     {
         public int Id { get; set; }
+        public int BookingId { get; set; }
         public int EventId { get; set; }
         public string CustomerId { get; set; }
         public string OrganizerId { get; set; }

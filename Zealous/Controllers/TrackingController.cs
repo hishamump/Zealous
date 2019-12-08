@@ -27,6 +27,7 @@ namespace Zealous.Controllers
 
             return query.Join(db.Events, b => b.EventId, e => e.Id, (b, e) => new
             {
+                b.Id,
                 b.BookingDate,
                 b.BookingStatus,
                 b.EquipmentId,
@@ -34,6 +35,7 @@ namespace Zealous.Controllers
                 b.UserId,
                 e.EventName
             }).AsEnumerable().Select(b => new Booking {
+                Id = b.Id,
                 BookingDate = b.BookingDate,
                 BookingStatus = b.BookingStatus,
                 EquipmentId = b.EquipmentId,
@@ -46,8 +48,9 @@ namespace Zealous.Controllers
         public ActionResult ProgressDetail(int id)
         {
             //Collect progress data for current event
-            var eventProgress = db.EventTrackings.Where(e => e.EventId == id).ToList();
-            var evnt = db.Events.FirstOrDefault(e => e.Id == id);
+            var eventProgress = db.EventTrackings.Where(e => e.BookingId == id).ToList();
+            var eventId = eventProgress.First().EventId;
+            var evnt = db.Events.FirstOrDefault(e => e.Id == eventId);
 
             //
             var eList = new List<ProgressDetail>();
@@ -74,10 +77,11 @@ namespace Zealous.Controllers
 
         private ProgressDetail GetProgressDetail(int id) {
             //Get the tracking record
-            var eventTracking = db.EventTrackings.AsEnumerable().LastOrDefault(et => et.EventId == id);
-            var evnt = db.Events.FirstOrDefault(e => e.Id == id);
+            var eventTracking = db.EventTrackings.AsEnumerable().LastOrDefault(et => et.BookingId == id);
+            var evnt = db.Events.FirstOrDefault(e => e.Id == eventTracking.EventId);
             var detail = new ProgressDetail();
-            detail.Id = id;
+            detail.EventId = eventTracking.EventId;
+            detail.BookingId = id;
             detail.EventName = evnt.EventName;
             detail.EventStatus = (byte)EventStatus.Create;
 
@@ -91,10 +95,18 @@ namespace Zealous.Controllers
         [HttpPost]
         public ActionResult UpdateEventProgress(ProgressDetail details)
         {
-            var track = new EventTracking { CustomerId = User.Identity.GetUserId(), EventId = details.Id, EventStatus = details.EventStatus, Date = DateTime.Now };
+            var currentTrack = db.EventTrackings.Where(e => e.BookingId == details.BookingId).OrderByDescending(e => e.Id).FirstOrDefault();
+            if (currentTrack != null && currentTrack.EventStatus == details.EventStatus)
+                return View(GetProgressDetail(details.BookingId));
+            var track = new EventTracking { CustomerId = User.Identity.GetUserId(), BookingId = details.BookingId, EventId = details.EventId, EventStatus = details.EventStatus, Date = DateTime.Now };
             db.EventTrackings.Add(track);
+
+            var booking = db.Bookings.Where(b => b.Id == details.BookingId).FirstOrDefault();
+            if (booking != null)
+                booking.BookingStatus = ((EventStatus)details.EventStatus).ToString();
             db.SaveChanges();
-            return View(GetProgressDetail(details.Id));
+            ViewBag.Updated = true;
+            return View(GetProgressDetail(details.BookingId));
         }
 
 
