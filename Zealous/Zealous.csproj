@@ -195,6 +195,7 @@
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\EnumEventStatus.cs" />
     <Compile Include="Models\EnumHelper.cs" />
+    <Compile Include="Models\EnumRoles.cs" />
     <Compile Include="Models\EnumUserStatus.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventTracking.cs" />
@@ -359,6 +360,7 @@
     <Content Include="Views\Equipments\Book.cshtml" />
     <Content Include="Views\Manage\Approve.cshtml" />
     <Content Include="Views\Events\ConfirmBooking.cshtml" />
+    <Content Include="Views\Manage\Setup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Zealous\" />

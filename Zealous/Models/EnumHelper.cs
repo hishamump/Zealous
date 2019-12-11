@@ -13,5 +13,12 @@ namespace Zealous.Models
                     .Select(c => new ValueTextView() { Value = (byte)c, Text = c.ToString() })
                     .ToList();
         }
+
+        public static List<ValueTextView> GetUserRoleView()
+        {
+            return ((IEnumerable<UserRole>)Enum.GetValues(typeof(UserRole)))
+                    .Select(c => new ValueTextView() { Value = (byte)c, Text = c.ToString() })
+                    .ToList();
+        }
     }
 }

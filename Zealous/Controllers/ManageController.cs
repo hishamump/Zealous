@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,6 +20,30 @@ namespace Zealous.Controllers
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
 
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
         public ApplicationRoleManager RoleManager
         {
             get
@@ -33,13 +58,6 @@ namespace Zealous.Controllers
 
         public ManageController()
         {
-        }
-
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-            RoleManager = roleManager;
         }
 
         public ActionResult Approve()
@@ -83,12 +101,14 @@ namespace Zealous.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Admin") ]
+        //[Authorize(Users = "hisham.ump@gmail.com")]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddRoleToUser() {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddRoleToUser(string user, string role) {
             var _user = UserManager.FindByEmail(user);
             var _role = RoleManager.FindByName(role);
@@ -99,30 +119,6 @@ namespace Zealous.Controllers
                 return RedirectToAction("Roles");
 
             return View();
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
         }
 
         //
@@ -408,7 +404,34 @@ namespace Zealous.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        [AllowAnonymous]
+        public async Task<ActionResult> Setup()
+        {
+            var adminEmail = "admin@zealous.com";
+            var roles = EnumHelper.GetUserRoleView();
+
+            foreach (var role in roles)
+            {
+                if (!RoleManager.RoleExists(role.Text))
+                {
+                    var newRole = new IdentityRole(role.Text);
+                    RoleManager.Create(newRole);
+                }
+            }
+
+            var user = new ApplicationUser { UserName = adminEmail, Email = adminEmail };
+            var result = await UserManager.CreateAsync(user, "Zealous@123");
+            if (result.Succeeded)
+            {
+                AddRoleToUser(adminEmail, UserRole.Admin.ToString());
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            }
+
+            AddErrors(result);
+            return View();
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
