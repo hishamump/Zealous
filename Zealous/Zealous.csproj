@@ -201,6 +201,7 @@
     <Compile Include="Models\EventTracking.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\ProgressDetail.cs" />
+    <Compile Include="Models\RoleToUserViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\UserView.cs" />

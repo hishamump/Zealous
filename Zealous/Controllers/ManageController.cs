@@ -91,34 +91,58 @@ namespace Zealous.Controllers
         {
             if (RoleManager.RoleExists(model.Name))
             {
-                throw new Exception("Role already exist");
+                ModelState.AddModelError("RoleName", "Role already exist");
+                return View(model);
             }
+            else
+            {
             var newRole = new IdentityRole(model.Name);
             var result = RoleManager.Create(newRole);
             if (result.Succeeded)
                 return RedirectToAction("Roles");
 
             return View(model);
+
+            }
         }
 
         //[Authorize(Users = "hisham.ump@gmail.com")]
         [Authorize(Roles = "Admin")]
         public ActionResult AddRoleToUser() {
+            var roles = EnumHelper.GetUserRoleView();
+            ViewBag.Roles = new SelectList(roles, "Text", "Text"); //Just need role name
             return View();
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult AddRoleToUser(string user, string role) {
-            var _user = UserManager.FindByEmail(user);
-            var _role = RoleManager.FindByName(role);
-            var result = UserManager.AddToRole(_user.Id, role);
+        public ActionResult AddRoleToUser(RoleToUserViewModel model) {
+            var roles = EnumHelper.GetUserRoleView();
+            ViewBag.Roles = new SelectList(roles, "Text", "Text"); //Just need role name
+
+            var user = UserManager.FindByEmail(model.UserName);
+            var role = RoleManager.FindByName(model.RoleName);
+
+            if (user == null)
+            {
+                ViewBag.Errors = new List<string> { "User not found" };
+                return View(model);
+            }
+
+
+            //if (user == null)
+            //{
+            //    ModelState.AddModelError("UserName", "User not found");
+            //    return View(model);
+            //}
+
+            var result = UserManager.AddToRole(user.Id, role.Name);
             ViewBag.Errors = result.Errors;
 
             if (result.Succeeded)
                 return RedirectToAction("Roles");
 
-            return View();
+            return View(model);
         }
 
         //
@@ -423,7 +447,7 @@ namespace Zealous.Controllers
             var result = await UserManager.CreateAsync(user, "Zealous@123");
             if (result.Succeeded)
             {
-                AddRoleToUser(adminEmail, UserRole.Admin.ToString());
+                AddRoleToUser(new RoleToUserViewModel() { UserName = adminEmail, RoleName = UserRole.Admin.ToString() });
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
 
