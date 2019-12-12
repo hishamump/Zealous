@@ -5,34 +5,45 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Event Details</h2>
+<style>
+    /*.row {
+        background-color: lightblue;
+    }*/
 
+    .row .row > div {
+        border: solid 0px black;
+        min-height: 200px;
+    }
+
+    .two-div {
+        height: 400px;
+    }
+
+    .three-div {
+        height: 600px;
+    }
+</style>
 <div>
-    <h4>Event</h4>
     <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>@Html.DisplayFor(model => model.EventName):</h4>
+            <p>
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </div>
+        <div class="col-md-6">
+            <img src="~/image/@Model.Image" />
+        </div>
+    </div>
+
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EventName)
-        </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.EventName)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            <img src="~/image/@Model.Image"/>
+            
         </dd>
 
     </dl>
