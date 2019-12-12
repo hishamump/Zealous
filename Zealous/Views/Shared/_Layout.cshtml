@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Zealous.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,30 +7,30 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-  <style>
-      .card {
-          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-          transition: 0.3s;
-          width: 40%;
-          border-radius: 5px;
-      }
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+            border-radius: 5px;
+        }
 
-          .card:hover {
-              box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-          }
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
 
-      img {
-          border-radius: 5px 5px 0 0;
-      }
+        img {
+            border-radius: 5px 5px 0 0;
+        }
 
-      .container {
-          padding: 2px 16px;
-      }
+        .container {
+            padding: 2px 16px;
+        }
 
-      body, html {
-          height: 100%;
-      }
-  </style>  
+        body, html {
+            height: 100%;
+        }
+    </style>
 
 </head>
 <body>
@@ -49,7 +50,10 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Event<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-item">@Html.ActionLink("Events", "Index", "Events")</li>
-                            <li class="dropdown-item">@Html.ActionLink("Add New", "Create", "Events")</li>
+                            @if (User.IsInRole(UserRole.Admin.ToString()) || User.IsInRole(UserRole.Supplier.ToString()))
+                            {
+                                <li class="dropdown-item">@Html.ActionLink("Add New", "Create", "Events")</li>
+                            }
                             <li class="dropdown-item">@Html.ActionLink("Book Event", "Book", "Events")</li>
                         </ul>
                     </li>
@@ -57,27 +61,42 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Equipment<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-item">@Html.ActionLink("Equipment", "Index", "Equipments")</li>
-                            <li class="dropdown-item">@Html.ActionLink("Add Equipment", "Create", "Equipments")</li>
+                            @if (User.IsInRole(UserRole.Admin.ToString()) || User.IsInRole(UserRole.Supplier.ToString()))
+                            {
+                                <li class="dropdown-item">@Html.ActionLink("Add Equipment", "Create", "Equipments")</li>
+                            }
                             <li class="dropdown-item">@Html.ActionLink("Book Equipment", "Book", "Equipments")</li>
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Tracking", "EventList", "Tracking")</li>
-                    <li>@Html.ActionLink("Supplier", "Status", "Supplier")</li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Approve<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-item">@Html.ActionLink("Supplier", "Approve", "Manage")</li>
-                        </ul>
-                    </li>
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole(UserRole.Supplier.ToString()))
                     {
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Role<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-item">@Html.ActionLink("Role", "Roles", "Manage")</li>
-                            <li class="dropdown-item">@Html.ActionLink("Add User", "AddRoleToUser", "Manage")</li>
-                        </ul>
-                    </li>
+                        <li>@Html.ActionLink("Supplier", "Status", "Supplier")</li>
+                    }
+                    @if (!User.IsInRole(UserRole.Admin.ToString()) && !User.IsInRole(UserRole.Supplier.ToString()) && !User.IsInRole(UserRole.Organizer.ToString()))
+                    {
+                        <li>@Html.ActionLink("Supplier Feedback", "Feedback", "Supplier")</li>
+                    }
+                    @if (User.IsInRole(UserRole.Admin.ToString()))
+                    {
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Approve<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-item">@Html.ActionLink("Supplier", "Approve", "Manage")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Organizer", "Approve", "Manage")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole(UserRole.Admin.ToString()))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Role<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                @*<li class="dropdown-item">@Html.ActionLink("Role", "Roles", "Manage")</li>*@
+                                <li class="dropdown-item">@Html.ActionLink("Add User", "AddRoleToUser", "Manage")</li>
+                            </ul>
+                        </li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
