@@ -1,4 +1,5 @@
-﻿@model Zealous.Models.Event
+﻿@using Zealous.Models
+@model Zealous.Models.Event
 
 @{
     ViewBag.Title = "Details";
@@ -31,12 +32,16 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="~/image/@Model.Image"/>
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @if (User.IsInRole(UserRole.Admin.ToString()))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        <span>|</span>
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

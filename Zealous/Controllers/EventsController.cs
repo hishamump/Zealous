@@ -15,7 +15,6 @@ namespace Zealous.Controllers
     {
         private ZealousContext db = new ZealousContext();
 
-        // GET: Events
         public ActionResult Index()
         {
             return View(db.Events.ToList());
@@ -128,7 +127,7 @@ namespace Zealous.Controllers
             return View(@event);
         }
 
-        // GET: Events/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -139,6 +138,7 @@ namespace Zealous.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,EventName,Description,Image")] Event @event)
         {
             if (ModelState.IsValid)
@@ -151,7 +151,7 @@ namespace Zealous.Controllers
             return View(@event);
         }
 
-        // GET: Events/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -171,6 +171,7 @@ namespace Zealous.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,EventName,Description,Image")] Event @event)
         {
             if (ModelState.IsValid)
@@ -182,7 +183,7 @@ namespace Zealous.Controllers
             return View(@event);
         }
 
-        // GET: Events/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -197,9 +198,9 @@ namespace Zealous.Controllers
             return View(@event);
         }
 
-        // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Event @event = db.Events.Find(id);

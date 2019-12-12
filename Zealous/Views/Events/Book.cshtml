@@ -37,11 +37,11 @@
                 <td class="actions" style="vertical-align:middle">
                     @if (item.IsBooked)
                     {
-                        @Html.ActionLink("Remove Booking", "RemoveBooking", new { eventId = item.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Remove From Card", "RemoveBooking", new { eventId = item.Id }, new { @class = "btn btn-warning" })
                     }
                     else
                     {
-                        @Html.ActionLink("Book Now", "BookOne", new { eventId = item.Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Add To Cart", "BookOne", new { eventId = item.Id }, new { @class = "btn btn-success" })
                     }
                 </td>
             </tr>
