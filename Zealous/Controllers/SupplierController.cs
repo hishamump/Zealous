@@ -7,40 +7,22 @@ using Zealous.Models;
 
 namespace Zealous.Controllers
 {
-    public class SuppliersController : ZealousController
+    public class SupplierController : ZealousController
     {
         // GET: Supplier
         [HttpGet]
-        [Authorize(Roles = "Supplier")]
+        [Authorize]
         public ActionResult Status()
         {
             return View();
         }
-
-        [Authorize(Roles = "Supplier")]
         public ActionResult AddStatus()
         {
             return View();
         }
-
-        [Authorize(Roles = "Supplier")]
         public ActionResult UpdateStatus()
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult Rank()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Rank(Supplier model)
-        {
-            //var supplier = db.s
-            return View();
-        }
-
     }
 }

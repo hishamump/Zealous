@@ -179,12 +179,13 @@
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\EquipmentsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Controllers\ZealousController.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,7 +204,6 @@
     <Compile Include="Models\RoleToUserViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Supplier.cs" />
-    <Compile Include="Models\SupplierViewModels.cs" />
     <Compile Include="Models\UserView.cs" />
     <Compile Include="Models\ZealousContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -342,6 +342,9 @@
     <Content Include="Views\Tracking\EventList.cshtml" />
     <Content Include="Views\Tracking\ProgressDetail.cshtml" />
     <Content Include="Views\Tracking\UpdateEventProgress.cshtml" />
+    <Content Include="Views\Supplier\addStatus.cshtml" />
+    <Content Include="Views\Supplier\Status.cshtml" />
+    <Content Include="Views\Supplier\updateStatus.cshtml" />
     <Content Include="Views\Manage\Roles.cshtml" />
     <Content Include="Views\Manage\CreateRole.cshtml" />
     <Content Include="Views\Manage\AddRoleToUser.cshtml" />
@@ -359,7 +362,6 @@
     <Content Include="Views\Manage\Approve.cshtml" />
     <Content Include="Views\Events\ConfirmBooking.cshtml" />
     <Content Include="Views\Manage\Setup.cshtml" />
-    <Content Include="Views\Suppliers\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Zealous\" />

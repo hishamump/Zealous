@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Supplier";
+}
+<br /><br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    @Html.ActionLink("Add Status", "AddStatus", new { controller = "Supplier" }, new { @class = "btn btn-primary" })<br /><br />
+    @Html.ActionLink("Update Status", "UpdateStatus", new { controller = "Supplier" }, new { @class = "btn btn-primary" })<br /><br />
+    
+
+
+}

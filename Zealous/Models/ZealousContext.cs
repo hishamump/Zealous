@@ -27,7 +27,5 @@ namespace Zealous.Models
         }
 
         public System.Data.Entity.DbSet<Zealous.Models.Equipment> Equipments { get; set; }
-
-        public System.Data.Entity.DbSet<Zealous.Models.Supplier> Suppliers { get; set; }
     }
 }

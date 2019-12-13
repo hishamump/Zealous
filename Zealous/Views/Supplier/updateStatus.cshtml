@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "UpdateStatus";
+}
+<br /><br />
+<h2>Update Status</h2>
+
+<center>
+    <form>
+        <fieldset>
+            
+            <br><br>
+            User ID : <input type="text" name="userId"><br><br>
+            Status : <input type="text" name="status"><br><br>
+        </fieldset>
+    </form>
+    @Html.ActionLink("Submit", "Upd", new { controller = "Supplier" }, new { @class = "btn btn-primary" })
+</center>
