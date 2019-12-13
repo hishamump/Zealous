@@ -5,14 +5,11 @@ using System.Web;
 
 namespace Zealous.Models
 {
-    public class Adduser
+    public class Supplier
     {
-        public String userId { set; get; }
-        public String status { set; get; }
-    }
-    public class Update
-    {
-        public String userId { set; get; }
-        public String status { set; get; }
+        public String UserId { set; get; }
+        public String SupplierId { set; get; }
+        public int Rank { get; set; }
+        public string Description { get; set; }
     }
 }
