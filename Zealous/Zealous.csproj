@@ -184,7 +184,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Controllers\ZealousController.cs" />
     <Compile Include="Global.asax.cs">
@@ -341,9 +340,6 @@
     <Content Include="Views\Tracking\EventList.cshtml" />
     <Content Include="Views\Tracking\ProgressDetail.cshtml" />
     <Content Include="Views\Tracking\UpdateEventProgress.cshtml" />
-    <Content Include="Views\Supplier\addStatus.cshtml" />
-    <Content Include="Views\Supplier\Status.cshtml" />
-    <Content Include="Views\Supplier\updateStatus.cshtml" />
     <Content Include="Views\Manage\Roles.cshtml" />
     <Content Include="Views\Manage\CreateRole.cshtml" />
     <Content Include="Views\Manage\AddRoleToUser.cshtml" />
