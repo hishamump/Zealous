@@ -338,7 +338,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Events\Book.cshtml" />
-    <Content Include="Views\Tracking\EventList.cshtml" />
+    <Content Include="Views\Tracking\Index.cshtml" />
     <Content Include="Views\Tracking\ProgressDetail.cshtml" />
     <Content Include="Views\Tracking\UpdateEventProgress.cshtml" />
     <Content Include="Views\Manage\Roles.cshtml" />

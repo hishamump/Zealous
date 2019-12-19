@@ -19,7 +19,7 @@
 
 
             <div class="card" style="margin-top:5px; max-width: 18rem;@strFloat">
-                
+
                 <div class="container">
                     <h4><b>@((EventStatus)ev.EventStatus)</b></h4>
                     <p>@ev.Date</p>
@@ -35,8 +35,10 @@
             }
         }
     </div>
-    <hr />
-}else
+}
+else
 {
     <h2>No Progress Available</h2>
 }
+<hr />
+@Html.ActionLink("Back to List", "Index")

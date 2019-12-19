@@ -11,9 +11,14 @@ namespace Zealous.Controllers
     [Authorize]
     public class TrackingController : ZealousController
     {
-        public ActionResult EventList()
+        public ActionResult Index()
         {
-            var events = GetBookedEvents(null, null, null);
+            string userId = null;
+            if (!User.IsInRole(UserRole.Admin.ToString())
+                && !User.IsInRole(UserRole.Supplier.ToString())
+                && !User.IsInRole(UserRole.Organizer.ToString()))
+                userId = User.Identity.GetUserId();
+            var events = GetBookedEvents(userId, null, null);
             return View(events);
         }
 

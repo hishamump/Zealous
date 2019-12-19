@@ -68,7 +68,7 @@
                             <li class="dropdown-item">@Html.ActionLink("Book Equipment", "Book", "Equipments")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Tracking", "EventList", "Tracking")</li>
+                    <li>@Html.ActionLink("Tracking", "Index", "Tracking")</li>
                     @if (User.IsInRole(UserRole.Supplier.ToString()))
                     {
                         <li>@Html.ActionLink("Supplier", "Status", "Supplier")</li>
