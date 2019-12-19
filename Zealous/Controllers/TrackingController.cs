@@ -19,6 +19,19 @@ namespace Zealous.Controllers
                 && !User.IsInRole(UserRole.Organizer.ToString()))
                 userId = User.Identity.GetUserId();
             var events = GetBookedEvents(userId, null, null);
+
+            if (User.IsInRole(UserRole.Admin.ToString())) {
+                Console.Write("Admin");
+            }
+            if (User.IsInRole(UserRole.Supplier.ToString()))
+            {
+                Console.Write("Supplier");
+            }
+            if (User.IsInRole(UserRole.Organizer.ToString()))
+            {
+                Console.Write("Organizer");
+            }
+
             return View(events);
         }
 

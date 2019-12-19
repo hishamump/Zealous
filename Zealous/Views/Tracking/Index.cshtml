@@ -22,7 +22,22 @@
             <td>@item.EventName</td>
             <td>@item.BookingStatus</td>
             <td class="actions" data-th="" style="text-align:right">
-                @Html.ActionLink("Update Progress", "UpdateEventProgress", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+                @*@if (User.IsInRole(UserRole.Admin.ToString())) {
+                    <span>"Admin"</span>
+                }
+                @if (User.IsInRole(UserRole.Supplier.ToString()))
+                {
+                    <span>"Supplier"</span>
+                }
+                @if (User.IsInRole(UserRole.Organizer.ToString()))
+                {
+                    <span>"Organizer"</span>
+                }*@
+
+                @if (User.IsInRole(UserRole.Admin.ToString()) || User.IsInRole(UserRole.Supplier.ToString()) || User.IsInRole(UserRole.Organizer.ToString()))
+                {
+                    <span>@Html.ActionLink("Update Progress", "UpdateEventProgress", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</span>
+                }
             </td>
             <td class="actions" data-th="" style="text-align:right">
                 @Html.ActionLink("Track", "ProgressDetail", "Tracking", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
