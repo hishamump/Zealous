@@ -97,6 +97,16 @@
                                 <li class="dropdown-item">@Html.ActionLink("Add User", "AddRoleToUser", "Manage")</li>
                             </ul>
                         </li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Report<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li class="dropdown-item">@Html.ActionLink("Clients Per Events", "ClientPerEvents", "Report")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Supplier Details", "SupplierDetails", "Report")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Equipments Details", "EquipmentDetails", "Report")</li>
+                            </ul>
+                        </li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

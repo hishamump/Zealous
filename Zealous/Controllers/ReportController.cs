@@ -13,5 +13,20 @@ namespace Zealous.Controllers
         {
             return View();
         }
+        // GET: Report
+        public ActionResult ClientPerEvents()
+        {
+            return View();
+        }
+        // GET: Report
+        public ActionResult SupplierDetails()
+        {
+            return View();
+        }
+        // GET: Report
+        public ActionResult EquipmentDetails()
+        {
+            return View();
+        }
     }
 }
